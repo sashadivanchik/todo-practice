@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:unit": "react-scripts test",
-    "test:e2e": "react-scripts test",
+    "test:e2e": "node ./scripts/e2e.test.js",
+    "lint": "node ./scripts/lint.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
