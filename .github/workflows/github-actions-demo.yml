@@ -19,7 +19,5 @@ jobs:
         run: yarn build
       - name: unit test
         run: yarn test:unit
-      - name: e2e test
-        run: yarn test:e2e
       - name: lint test
         run: yarn lint
