@@ -1,10 +1,11 @@
 import React from 'react';
 import "normalize.css"
+import { List } from "../List/List";
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <div className="App">
-      todo
+      <List />
     </div>
   );
 }
