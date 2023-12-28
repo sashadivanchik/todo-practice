@@ -27,6 +27,7 @@ export const List: React.FC = () => {
 
   return (
     <div>
+      <div>Todo</div>
       <Input
         placeholder={'введите сообщение'}
         onClick={handleAddTodo}
