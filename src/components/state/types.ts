@@ -1,6 +1,6 @@
 export type TodoProps = {
   id: string;
-  todoName: string;
+  description: string;
   isComplete: boolean;
 }
 

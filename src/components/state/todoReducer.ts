@@ -4,8 +4,8 @@ export const initialState: TodoState = {
   todos: []
 };
 
-const newTodo = (todoName: string): TodoProps => {
-  return { id: uuid4(), todoName: todoName, isComplete: false}
+const newTodo = (description: string): TodoProps => {
+  return { id: uuid4(), description: description, isComplete: false}
 };
 
 export const todoReducer = (state: TodoState, action: todoAction) => {

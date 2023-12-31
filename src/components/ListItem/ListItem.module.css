@@ -1,0 +1,34 @@
+.listItemContainer {
+    border-radius: 12px;
+    display: flex;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #F3F6F9;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.deleteButton {
+    margin-bottom: 10px;
+    width: 110px;
+}
+
+.toggleButton {
+    width: 110px;
+}
+
+.listItemMessage {
+    background: #fdfdfd;
+    min-height: 100%;
+    width: 100%;
+    margin-left: 15px;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.isComplete {
+    text-decoration: line-through;
+}

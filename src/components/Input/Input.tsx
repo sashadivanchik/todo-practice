@@ -1,36 +1,25 @@
-import React, { useState } from "react";
-import { TodoInputProps } from "./types";
+import React from "react";
+import { Input as AntInput } from "antd";
+import { InputProps } from "./types";
+import classNames from "classnames";
 
-export const Input: React.FC<TodoInputProps> = ({
-  onClick,
-  placeholder= ''
+export const Input: React.FC<InputProps> = ({
+  type = "text",
+  placeholder = "",
+  value= "",
+  styleName,
+  onChange
 }) => {
-  const [value, setValue] = useState<string>('');
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value)
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!value) {
-      return
-    }
-
-    onClick(value)
-    setValue('')
-  };
+  const classes = classNames(styleName);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-      />
-      <button type="submit">Добавить</button>
-    </form>
+    <AntInput
+      className={classes}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
   )
 };
