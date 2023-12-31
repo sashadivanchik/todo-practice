@@ -1,8 +1,10 @@
 import React, { useReducer } from "react";
 import { initialState, todoReducer } from "../state/todoReducer";
 import { ListItem } from "../ListItem/ListItem";
-import { Input } from "../Input/Input";
+import { Form } from "../Form/Form";
 import { TodoActionsType } from "../state/types";
+import { Container } from "../Container/Container";
+import styles from "./List.module.css";
 
 export const List: React.FC = () => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
@@ -26,22 +28,27 @@ export const List: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>Todo</div>
-      <Input
-        placeholder={'введите сообщение'}
-        onClick={handleAddTodo}
-      />
-      {state.todos.length ? state.todos.map((todo) => (
-        <ListItem
-          key={todo.id}
-          id={todo.id}
-          todoName={todo.todoName}
-          isComplete={todo.isComplete}
-          onRemove={handleRemove}
-          onToggle={handleToggle}
-        />
-      )) : <div>Список пуст</div>}
-    </div>
+    <Container styleName={"asd"}>
+      <>
+        <h1>Список дел</h1>
+        <div className={styles.formWrapper}>
+          <Form
+            placeholder={'введите сообщение'}
+            onClick={handleAddTodo}
+          />
+        </div>
+
+        {state.todos.length ? state.todos.map((todo) => (
+          <ListItem
+            key={todo.id}
+            id={todo.id}
+            description={todo.description}
+            isComplete={todo.isComplete}
+            onRemove={handleRemove}
+            onToggle={handleToggle}
+          />
+        )) : <div>Список пуст</div>}
+      </>
+    </Container>
   )
 };

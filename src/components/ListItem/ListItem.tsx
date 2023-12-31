@@ -1,30 +1,49 @@
 import React from "react";
 import { TodoProps } from "../state/types";
+import { Button } from "../Button/Button";
+import styles from "./ListItem.module.css";
+import classNames from "classnames";
+
 export interface ListItemProps extends TodoProps {
   onRemove: (id: string) => void;
   onToggle: (id: string) => void;
+  styleName?: string;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({
   id,
   isComplete,
-  todoName,
+  description,
+  styleName,
   onToggle,
   onRemove
 }) => {
-
   const toggleMessage = isComplete ? 'В работу' : 'Завершить';
-  const isCompleteStyle = isComplete ? 'line-through' : '';
+  const isCompleteStyle = isComplete ? styles.isComplete : '';
+
+  const classes = classNames(styles.listItemContainer, styleName);
+  const descriptionClasses = classNames(styles.listItemMessage, isCompleteStyle);
 
   return (
-    <div style={{ display: "flex "}}>
-      <div>
-        <button onClick={() => onRemove(id)}>Удалить</button>
-        <button onClick={() => onToggle(id)}>{toggleMessage}</button>
+    <div className={classes}>
+
+      <div className={styles.buttonsContainer}>
+        <Button
+          styleName={styles.deleteButton}
+          onClick={() => onRemove(id)}
+          text={"Удалить"}
+        />
+        <Button
+          styleName={styles.toggleButton}
+          onClick={() => onToggle(id)}
+          text={toggleMessage}
+        />
       </div>
-      <p style={{ textDecoration: `${isCompleteStyle}` }}>
-        {todoName}
-      </p>
+
+      <div className={descriptionClasses}>
+          {description}
+      </div>
+
     </div>
   )
 };

@@ -1,0 +1,11 @@
+.formContainer {
+    width: 350px;
+}
+
+.form {
+    display: flex
+}
+
+.formInput {
+    margin-right: 15px;
+}
