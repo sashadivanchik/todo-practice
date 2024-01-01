@@ -1,8 +1,8 @@
 import React from "react";
-import { TodoProps } from "../state/types";
 import { Button } from "../Button/Button";
 import styles from "./ListItem.module.css";
 import classNames from "classnames";
+import { TodoProps } from "../../store/state/types";
 
 export interface ListItemProps extends TodoProps {
   onRemove: (id: string) => void;

@@ -20,13 +20,13 @@ export const todoReducer = (state: TodoState, action: todoAction) => {
     case TodoActionsType.REMOVE_TODO:
       return {
         ...state,
-        todos: [...state.todos.filter(item => item.id !== payload.id)]
+        todos: state.todos.filter(item => item.id !== payload.id)
       };
     case TodoActionsType.TOGGLE_TODO:
       return {
         ...state,
-        todos: [...state.todos.map((item) => {
-          return item.id === payload.id ? { ...item, isComplete: !item.isComplete } : item })]
+        todos: state.todos.map((item) => {
+          return item.id === payload.id ? { ...item, isComplete: !item.isComplete } : item })
       }
     default:
       return state;

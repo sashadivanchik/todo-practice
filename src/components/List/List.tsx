@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
-import { initialState, todoReducer } from "../state/todoReducer";
+
 import { ListItem } from "../ListItem/ListItem";
 import { Form } from "../Form/Form";
-import { TodoActionsType } from "../state/types";
 import { Container } from "../Container/Container";
-import styles from "./List.module.css";
+import { initialState, todoReducer } from "../../store/state/todoReducer";
+import { TodoActionsType } from "../../store/state/types";
 
 export const List: React.FC = () => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
@@ -28,16 +28,13 @@ export const List: React.FC = () => {
   };
 
   return (
-    <Container styleName={"asd"}>
+    <Container>
       <>
         <h1>Список дел</h1>
-        <div className={styles.formWrapper}>
-          <Form
-            placeholder={'введите сообщение'}
-            onClick={handleAddTodo}
-          />
-        </div>
-
+        <Form
+          placeholder={'введите сообщение'}
+          onClick={handleAddTodo}
+        />
         {state.todos.length ? state.todos.map((todo) => (
           <ListItem
             key={todo.id}
