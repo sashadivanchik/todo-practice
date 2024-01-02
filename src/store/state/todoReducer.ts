@@ -1,12 +1,15 @@
-import { todoAction, TodoActionsType, TodoProps, TodoState } from "./types";
-import { v4 as uuid4 } from "uuid";
+import { v4 as uuid4 } from 'uuid';
+import {
+  todoAction, TodoActionsType, TodoProps, TodoState,
+} from './types';
+
 export const initialState: TodoState = {
   todos: [],
 };
 
-const newTodo = (description: string): TodoProps => {
-  return { id: uuid4(), description: description, isComplete: false};
-};
+const newTodo = (description: string): TodoProps => (
+  { id: uuid4(), description, isComplete: false }
+);
 
 export const todoReducer = (state: TodoState, action: todoAction) => {
   const { type, payload } = action;
@@ -15,18 +18,19 @@ export const todoReducer = (state: TodoState, action: todoAction) => {
     case TodoActionsType.ADD_TODO:
       return {
         ...state,
-        todos: [...state.todos, newTodo(payload.name)]
+        todos: [...state.todos, newTodo(payload.name)],
       };
     case TodoActionsType.REMOVE_TODO:
       return {
         ...state,
-        todos: state.todos.filter(item => item.id !== payload.id)
+        todos: state.todos.filter((item) => item.id !== payload.id),
       };
     case TodoActionsType.TOGGLE_TODO:
       return {
         ...state,
-        todos: state.todos.map((item) => {
-          return item.id === payload.id ? { ...item, isComplete: !item.isComplete } : item; })
+        todos: state.todos.map((item) => (item.id === payload.id ? (
+          { ...item, isComplete: !item.isComplete }
+        ) : item)),
       };
     default:
       return state;

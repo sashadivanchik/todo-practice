@@ -9,9 +9,9 @@ export type TodoState = {
 }
 
 export enum TodoActionsType {
-  ADD_TODO = "ADD_TODO",
-  REMOVE_TODO = "REMOVE_TODO",
-  TOGGLE_TODO = "TOGGLE_TODO"
+  ADD_TODO = 'ADD_TODO',
+  REMOVE_TODO = 'REMOVE_TODO',
+  TOGGLE_TODO = 'TOGGLE_TODO'
 }
 
 type AddTodoAction = {

@@ -1,13 +1,13 @@
-import React from "react";
-import { Button } from "../Button/Button";
-import styles from "./ListItem.module.css";
-import classNames from "classnames";
-import { TodoProps } from "../../store/state/types";
+import React from 'react';
+import classNames from 'classnames';
+import { Button } from '../Button/Button';
+import styles from './ListItem.module.css';
+import { TodoProps } from '../../store/state/types';
 
 export interface ListItemProps extends TodoProps {
   onRemove: (id: string) => void;
   onToggle: (id: string) => void;
-  styleName?: string;
+  styleName: string | undefined;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({
@@ -16,7 +16,7 @@ export const ListItem: React.FC<ListItemProps> = ({
   description,
   styleName,
   onToggle,
-  onRemove
+  onRemove,
 }) => {
   const toggleMessage = isComplete ? 'В работу' : 'Завершить';
   const isCompleteStyle = isComplete ? styles.isComplete : '';
@@ -31,7 +31,7 @@ export const ListItem: React.FC<ListItemProps> = ({
         <Button
           styleName={styles.deleteButton}
           onClick={() => onRemove(id)}
-          text={"Удалить"}
+          text="Удалить"
         />
         <Button
           styleName={styles.toggleButton}
@@ -41,7 +41,7 @@ export const ListItem: React.FC<ListItemProps> = ({
       </div>
 
       <div className={descriptionClasses}>
-          {description}
+        { description }
       </div>
 
     </div>

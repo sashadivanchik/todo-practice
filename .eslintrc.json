@@ -7,7 +7,14 @@
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended",
+        "airbnb",
+        "plugin:import/recommended",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -23,6 +30,35 @@
     ],
     "rules": {
         "semi": "error",
-        "eol-last": ["error", "always"]
+        "eol-last": ["error", "always"],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".tsx", ".ts"] }],
+        "linebreak-style": 0,
+        "import/prefer-default-export": "off",
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": ["function-declaration", "arrow-function"],
+                "unnamedComponents": "arrow-function"
+            }
+        ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "warn"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     }
 }

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { TodoInputProps } from "./types";
-import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
-import styles from "./Form.module.css";
+import React, { useState } from 'react';
+import { TodoInputProps } from './types';
+import { Button } from '../Button/Button';
+import { Input } from '../Input/Input';
+import styles from './Form.module.css';
 
 export const Form: React.FC<TodoInputProps> = ({
   onClick,
-  placeholder= ''
+  placeholder = '',
 }) => {
   const [value, setValue] = useState<string>('');
 
-  const handleChange = (value: string) => {
-    setValue(value);
+  const handleChange = (val: string) => {
+    setValue(val);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -36,7 +36,7 @@ export const Form: React.FC<TodoInputProps> = ({
           styleName={styles.formInput}
         />
         <Button
-          text={"Добавить"}
+          text="Добавить"
           htmlType="submit"
         />
       </form>

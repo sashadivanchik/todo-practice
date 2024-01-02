@@ -1,14 +1,10 @@
 import React from 'react';
-import "normalize.css";
-import "./styles.css";
+import 'normalize.css';
+import './styles.css';
+import { List } from '../List/List';
 
-import { List } from "../List/List";
-
-export const App: React.FC = () => {
-  return (
-    <div className="App">
-      <List />
-    </div>
-  );
-};
-
+export const App: React.FC = () => (
+  <div className="App">
+    <List />
+  </div>
+);

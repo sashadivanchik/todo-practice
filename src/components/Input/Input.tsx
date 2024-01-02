@@ -1,16 +1,15 @@
-import React from "react";
-import { Input as AntInput } from "antd";
-import { InputProps } from "./types";
-import classNames from "classnames";
+import React from 'react';
+import { Input as AntInput } from 'antd';
+import classNames from 'classnames';
+import { InputProps } from './types';
 
 export const Input: React.FC<InputProps> = ({
-  type = "text",
-  placeholder = "",
-  value= "",
+  type = 'text',
+  placeholder = '',
+  value = '',
   styleName,
-  onChange
+  onChange,
 }) => {
-
   const classes = classNames(styleName);
 
   return (
