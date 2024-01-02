@@ -7,7 +7,7 @@ import { TodoProps } from '../../store/state/types';
 export interface ListItemProps extends TodoProps {
   onRemove: (id: string) => void;
   onToggle: (id: string) => void;
-  styleName: string | undefined;
+  styleName?: string;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({

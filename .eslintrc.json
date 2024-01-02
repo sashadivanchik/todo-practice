@@ -52,7 +52,8 @@
             }
         ],
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": "warn"
+        "@typescript-eslint/no-shadow": "warn",
+        "react/require-default-props": "off"
     },
     "settings": {
         "import/resolver": {
