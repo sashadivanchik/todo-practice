@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 export const Container: React.FC<ContainerProps> = ({
   children,
-  styleName,
+  styleName
 }) => {
 
   const classes = classNames(styles.container, styleName);
@@ -16,5 +16,5 @@ export const Container: React.FC<ContainerProps> = ({
     >
       {children}
     </div>
-  )
+  );
 };

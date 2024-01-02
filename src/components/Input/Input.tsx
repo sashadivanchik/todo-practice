@@ -21,5 +21,5 @@ export const Input: React.FC<InputProps> = ({
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />
-  )
+  );
 };

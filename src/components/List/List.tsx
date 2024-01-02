@@ -13,18 +13,18 @@ export const List: React.FC = () => {
     dispatch({
       type: TodoActionsType.REMOVE_TODO,
       payload: { id }
-    })
+    });
   };
 
   const handleToggle = (id: string) => {
     dispatch({
       type: TodoActionsType.TOGGLE_TODO,
       payload: { id }
-    })
+    });
   };
 
   const handleAddTodo = (value: string) => {
-    dispatch({type: TodoActionsType.ADD_TODO, payload: { name: value }})
+    dispatch({type: TodoActionsType.ADD_TODO, payload: { name: value }});
   };
 
   return (
@@ -47,5 +47,5 @@ export const List: React.FC = () => {
         )) : <div>Список пуст</div>}
       </>
     </Container>
-  )
+  );
 };

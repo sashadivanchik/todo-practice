@@ -11,18 +11,18 @@ export const Form: React.FC<TodoInputProps> = ({
   const [value, setValue] = useState<string>('');
 
   const handleChange = (value: string) => {
-    setValue(value)
+    setValue(value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!value) {
-      return
+      return;
     }
 
-    onClick(value)
-    setValue('')
+    onClick(value);
+    setValue('');
   };
 
   return (
@@ -41,5 +41,5 @@ export const Form: React.FC<TodoInputProps> = ({
         />
       </form>
     </div>
-  )
+  );
 };

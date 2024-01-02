@@ -45,5 +45,5 @@ export const ListItem: React.FC<ListItemProps> = ({
       </div>
 
     </div>
-  )
+  );
 };

@@ -15,5 +15,5 @@ export const Button: React.FC<ButtonProps> = ({
         onClick={onClick}
       >
         {text}
-      </AntButton>)
+      </AntButton>);
 };

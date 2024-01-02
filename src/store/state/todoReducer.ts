@@ -1,11 +1,11 @@
 import { todoAction, TodoActionsType, TodoProps, TodoState } from "./types";
 import { v4 as uuid4 } from "uuid";
 export const initialState: TodoState = {
-  todos: []
+  todos: [],
 };
 
 const newTodo = (description: string): TodoProps => {
-  return { id: uuid4(), description: description, isComplete: false}
+  return { id: uuid4(), description: description, isComplete: false};
 };
 
 export const todoReducer = (state: TodoState, action: todoAction) => {
@@ -26,8 +26,8 @@ export const todoReducer = (state: TodoState, action: todoAction) => {
       return {
         ...state,
         todos: state.todos.map((item) => {
-          return item.id === payload.id ? { ...item, isComplete: !item.isComplete } : item })
-      }
+          return item.id === payload.id ? { ...item, isComplete: !item.isComplete } : item; })
+      };
     default:
       return state;
   }
