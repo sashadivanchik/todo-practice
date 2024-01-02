@@ -30,7 +30,7 @@ export const List: React.FC = () => {
   return (
     <Container>
       <>
-        <h1>Список дел</h1>
+        <h1>Список дел тест</h1>
         <Form
           placeholder={'введите сообщение'}
           onClick={handleAddTodo}
