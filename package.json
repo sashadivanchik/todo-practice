@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:unit": "react-scripts test",
-    "lint fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "lint fix": "eslint src/**/*.{js,jsx,ts,tsx}",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -57,7 +57,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "eslint"
     ]
   },
   "husky": {
