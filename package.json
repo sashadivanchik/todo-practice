@@ -13,8 +13,6 @@
     "@types/uuid": "^9.0.7",
     "antd": "^5.12.5",
     "classnames": "^2.5.1",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:unit": "react-scripts test",
-    "lint": "eslint src --color --no-fix --max-warnings 0"
+    "lint fix": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -52,16 +51,18 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings=0"
-    ]
   }
 }
