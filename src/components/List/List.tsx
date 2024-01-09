@@ -2,8 +2,8 @@ import React, { useReducer } from 'react';
 import { ListItem } from '../ListItem/ListItem';
 import { Form } from '../Form/Form';
 import { Container } from '../Container/Container';
-import { initialState, todoReducer } from '../../store/state/todoReducer'
-import { TodoActionsType } from "../../store/state/types";
+import { initialState, todoReducer } from '../../store/state/todoReducer';
+import { TodoActionsType } from '../../store/state/types';
 
 export const List: React.FC = () => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
