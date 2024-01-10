@@ -17,7 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.4.2",
+    "typescript": "*",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.0"
   },
@@ -25,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:unit": "react-scripts test",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx}"
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -46,10 +48,16 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "eslint": "^8.0.1",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0"
   }
 }

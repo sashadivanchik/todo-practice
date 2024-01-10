@@ -29,7 +29,9 @@
         "react"
     ],
     "rules": {
-        "semi": "error",
+        "indent": ["error", 2, { "SwitchCase": 1}],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
         "eol-last": ["error", "always"],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".tsx", ".ts"] }],
         "linebreak-style": 0,
