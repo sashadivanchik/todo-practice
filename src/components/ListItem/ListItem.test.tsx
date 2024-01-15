@@ -40,19 +40,19 @@ describe('Отображение елемента списка: ', () => {
   });
 
   it('переключение на завершение задачи', async () => {
-    let isOpen = false;
+    let isToggle = false;
 
-    const handleOpen = () => {
-      isOpen = true;
+    const handleToggle = () => {
+      isToggle = true;
     };
 
     const { getByText, findByText, rerender } = render(
       <ListItem
         onRemove={() => {}}
-        onToggle={handleOpen}
+        onToggle={handleToggle}
         id="1"
         description="Сходить в магазин"
-        isComplete={isOpen}
+        isComplete={isToggle}
       />,
     );
 
@@ -63,10 +63,10 @@ describe('Отображение елемента списка: ', () => {
     rerender(
       <ListItem
         onRemove={() => {}}
-        onToggle={handleOpen}
+        onToggle={handleToggle}
         id="1"
         description="Сходить в магазин"
-        isComplete={isOpen}
+        isComplete={isToggle}
       />,
     );
 
