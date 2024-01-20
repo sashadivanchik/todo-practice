@@ -32,6 +32,13 @@ export const todoReducer = (state: TodoState, action: todoAction) => {
           { ...item, isComplete: !item.isComplete }
         ) : item)),
       };
+    case TodoActionsType.EDIT_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((item) => (item.id === payload.id ? (
+          { ...item, description: payload.edited }
+        ) : item)),
+      };
     default:
       return state;
   }

@@ -8,6 +8,7 @@ describe('Отображение елемента списка: ', () => {
       <ListItem
         onRemove={() => {}}
         onToggle={() => {}}
+        onEdit={() => {}}
         id="1"
         description="Сходить в магазин"
         isComplete={false}
@@ -26,6 +27,7 @@ describe('Отображение елемента списка: ', () => {
       <ListItem
         onRemove={() => {}}
         onToggle={() => {}}
+        onEdit={() => {}}
         id="1"
         description="Сходить в магазин"
         isComplete
@@ -49,6 +51,7 @@ describe('Отображение елемента списка: ', () => {
     const { getByText, findByText, rerender } = render(
       <ListItem
         onRemove={() => {}}
+        onEdit={() => {}}
         onToggle={handleToggle}
         id="1"
         description="Сходить в магазин"
@@ -63,6 +66,7 @@ describe('Отображение елемента списка: ', () => {
     rerender(
       <ListItem
         onRemove={() => {}}
+        onEdit={() => {}}
         onToggle={handleToggle}
         id="1"
         description="Сходить в магазин"
