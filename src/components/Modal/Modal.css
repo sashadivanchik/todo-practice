@@ -1,0 +1,8 @@
+.modalContainer .ant-modal-content,
+.modalContainer .ant-modal-title {
+    background: #F3F6F9;
+}
+
+.modalContainer .ant-modal-content {
+    padding: 15px;
+}

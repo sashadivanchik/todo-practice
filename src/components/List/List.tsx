@@ -26,6 +26,13 @@ export const List: React.FC = () => {
     dispatch({ type: TodoActionsType.ADD_TODO, payload: { name: value } });
   };
 
+  const handleEditTodo = (id: string, edited: string) => {
+    dispatch({
+      type: TodoActionsType.EDIT_TODO,
+      payload: { id, edited },
+    });
+  };
+
   return (
     <Container>
       <>
@@ -42,6 +49,7 @@ export const List: React.FC = () => {
             isComplete={todo.isComplete}
             onRemove={handleRemove}
             onToggle={handleToggle}
+            onEdit={handleEditTodo}
           />
         )) : <div>Список пуст</div>}
       </>

@@ -7,17 +7,9 @@
 }
 
 .buttonsContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-.deleteButton {
-    margin-bottom: 10px;
-    width: 110px;
-}
-
-.toggleButton {
-    width: 110px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
 }
 
 .listItemMessage {
