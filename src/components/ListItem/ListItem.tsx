@@ -68,13 +68,17 @@ export const ListItem: React.FC<ListItemProps> = ({
 
       <Modal
         title="Редактирование"
-        confirmButtonText="Редактировать"
+        confirmButtonText="Редактировать задачу"
         cancelButtonText="Отменить"
         open={open}
         onConfirm={handleConfirm}
         onClose={handleCancel}
       >
-        <TextField value={value} onChange={setValue} />
+        <TextField
+          value={value}
+          onChange={setValue}
+          dataTestId="edit-textarea"
+        />
       </Modal>
 
     </div>

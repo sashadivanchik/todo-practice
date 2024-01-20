@@ -107,3 +107,40 @@ describe('Проверка работы, c тремя задачами', () => {
     expect(emptyList).toBeInTheDocument();
   });
 });
+
+describe('Проверка работы редактирования задачи', () => {
+  it('создание, редактирование задачи, в модальном окне', async () => {
+    const { input, addButton } = setup();
+
+    fireEvent.change(input, { target: { value: 'Купить хлеб' } });
+
+    fireEvent.click(addButton);
+
+    const task = await screen.getByText('Купить хлеб');
+    expect(task).toBeInTheDocument();
+
+    const editButton = await screen.getByText('Редактировать');
+    expect(editButton).toBeInTheDocument();
+
+    fireEvent.click(editButton);
+
+    const modalTitle = await screen.getByText('Редактирование');
+    expect(modalTitle).toBeInTheDocument();
+
+    const modalEditButton = await screen.getByText('Редактировать задачу');
+    expect(modalEditButton).toBeInTheDocument();
+
+    const modalCancelButton = await screen.getByText('Отменить');
+    expect(modalCancelButton).toBeInTheDocument();
+
+    const textarea = screen.getByTestId('edit-textarea');
+
+    fireEvent.change(textarea, { target: { value: 'Купить хлеб и колбасу' } });
+
+    const editButtonEvent = await screen.getByText('Редактировать');
+    fireEvent.click(editButtonEvent);
+
+    const taskAfterOfEdit = await screen.getByText('Купить хлеб и колбасу');
+    expect(taskAfterOfEdit).toBeInTheDocument();
+  });
+});
