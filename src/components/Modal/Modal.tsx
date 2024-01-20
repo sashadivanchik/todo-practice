@@ -22,8 +22,8 @@ export const Modal: React.FC<ModalProps> = ({
     okText={confirmButtonText}
     cancelText={cancelButtonText}
     footer={[
-      <Button text={cancelButtonText} onClick={onClose} />,
-      <Button text={confirmButtonText} onClick={onConfirm} />,
+      <Button key="1" text={cancelButtonText} onClick={onClose} />,
+      <Button key="2" text={confirmButtonText} onClick={onConfirm} />,
     ]}
     className="modalContainer"
   >
