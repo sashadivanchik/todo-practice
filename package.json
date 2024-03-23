@@ -23,8 +23,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
     "pre-commit": "lint-staged",
     "prepare": "husky install"

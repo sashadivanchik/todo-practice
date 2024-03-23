@@ -9,7 +9,7 @@ describe('Отображение елемента списка: ', () => {
         onRemove={() => {}}
         onToggle={() => {}}
         onEdit={() => {}}
-        id="1"
+        id={1}
         description="Сходить в магазин"
         isComplete={false}
       />,
@@ -28,7 +28,7 @@ describe('Отображение елемента списка: ', () => {
         onRemove={() => {}}
         onToggle={() => {}}
         onEdit={() => {}}
-        id="1"
+        id={1}
         description="Сходить в магазин"
         isComplete
       />,
@@ -53,7 +53,7 @@ describe('Отображение елемента списка: ', () => {
         onRemove={() => {}}
         onEdit={() => {}}
         onToggle={handleToggle}
-        id="1"
+        id={1}
         description="Сходить в магазин"
         isComplete={isToggle}
       />,
@@ -68,7 +68,7 @@ describe('Отображение елемента списка: ', () => {
         onRemove={() => {}}
         onEdit={() => {}}
         onToggle={handleToggle}
-        id="1"
+        id={1}
         description="Сходить в магазин"
         isComplete={isToggle}
       />,

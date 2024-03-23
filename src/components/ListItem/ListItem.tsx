@@ -7,9 +7,9 @@ import { Modal } from '../Modal/Modal';
 import { TextField } from '../TextArea/TextArea';
 
 export interface ListItemProps extends TodoProps {
-  onRemove: (id: string) => void;
-  onToggle: (id: string) => void;
-  onEdit: (id: string, value: string) => void
+  onRemove: (id: number) => void;
+  onToggle: (id: number, handleToggle: boolean) => void;
+  onEdit: (id: number, value: string) => void
   styleName?: string;
 }
 
@@ -52,7 +52,7 @@ export const ListItem: React.FC<ListItemProps> = ({
           text="Удалить"
         />
         <Button
-          onClick={() => onToggle(id)}
+          onClick={() => onToggle(id, isComplete)}
           text={toggleMessage}
         />
 
