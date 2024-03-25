@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import { todoService } from '../../services/todoService';
 
 type Todos = {
   id: number,
@@ -22,10 +23,6 @@ type TodoAction =
   | { type: TodoActionKind.FETCH_INIT }
   | { type: TodoActionKind.FETCH_SUCCESS, payload: Todos[] }
   | { type: TodoActionKind.FETCH_FAILURE };
-
-const headers = {
-  'Content-Type': 'application/json;charset=utf-8',
-};
 
 const todosFetchReducer = (state: TodosState, action: TodoAction) => {
   switch (action.type) {
@@ -53,7 +50,7 @@ const todosFetchReducer = (state: TodosState, action: TodoAction) => {
   }
 };
 
-export const useTodoApi = () => {
+export const useTodoWorkspace = () => {
   const [state, dispatch] = useReducer(todosFetchReducer, {
     isLoading: false,
     isError: false,
@@ -64,12 +61,8 @@ export const useTodoApi = () => {
     dispatch({ type: TodoActionKind.FETCH_INIT });
 
     try {
-      const result = await fetch('http://localhost:7000/api/todos/getTodos', {
-        method: 'GET',
-        headers,
-      });
+      const data = await todoService.getList();
 
-      const data = await result.json();
       dispatch({ type: TodoActionKind.FETCH_SUCCESS, payload: data.items });
     } catch (e) {
       dispatch({ type: TodoActionKind.FETCH_FAILURE });
@@ -80,16 +73,7 @@ export const useTodoApi = () => {
     dispatch({ type: TodoActionKind.FETCH_INIT });
 
     try {
-      const result = await fetch('http://localhost:7000/api/todos/addTodo', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          description,
-          isComplete: false,
-        }),
-      });
-
-      const data = await result.json();
+      const data = await todoService.add(description);
 
       dispatch({ type: TodoActionKind.FETCH_SUCCESS, payload: [data.item, ...state.todos] });
     } catch (e) {
@@ -101,15 +85,7 @@ export const useTodoApi = () => {
     dispatch({ type: TodoActionKind.FETCH_INIT });
 
     try {
-      const result = await fetch('http://localhost:7000/api/todos/deleteTodo', {
-        method: 'DELETE',
-        headers,
-        body: JSON.stringify({
-          todoId: id,
-        }),
-      });
-
-      const data = await result.json();
+      const data = await todoService.remove(id);
 
       const filtered = state.todos.filter((todo) => todo.id !== data.item.id);
 
@@ -123,16 +99,7 @@ export const useTodoApi = () => {
     dispatch({ type: TodoActionKind.FETCH_INIT });
 
     try {
-      const result = await fetch('http://localhost:7000/api/todos/editComplete', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          todoId: id,
-          isComplete: !isComplete,
-        }),
-      });
-
-      const data = await result.json();
+      const data = await todoService.complete(id, isComplete);
 
       const updateData = state.todos.map((todo) => (todo.id === data.item.id ? ({
         ...todo,
@@ -149,16 +116,7 @@ export const useTodoApi = () => {
     dispatch({ type: TodoActionKind.FETCH_INIT });
 
     try {
-      const result = await fetch('http://localhost:7000/api/todos/editDescription', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          todoId: id,
-          description,
-        }),
-      });
-
-      const data = await result.json();
+      const data = await todoService.edit(id, description);
 
       const updateData = state.todos.map((todo) => ((todo.id === data.item.id) ? ({
         ...todo,

@@ -3,7 +3,7 @@ import { ListItem } from '../../components/ListItem/ListItem';
 import { Form } from '../../components/Form/Form';
 import { Container } from '../../components/Container/Container';
 import { Loading } from '../../components/Loading/Loading';
-import { useTodoApi } from './useTodoApi';
+import { useTodoWorkspace } from './useTodoWorkspace';
 
 export const List: React.FC = () => {
   const {
@@ -13,7 +13,7 @@ export const List: React.FC = () => {
     changeCompleteTodo,
     deleteTodo,
     editDescriptionTodo,
-  } = useTodoApi();
+  } = useTodoWorkspace();
 
   useEffect(() => {
     getTodos();
