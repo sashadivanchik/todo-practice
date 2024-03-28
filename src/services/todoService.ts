@@ -2,11 +2,14 @@ const headers = {
   'Content-Type': 'application/json;charset=utf-8',
 };
 
-const getList = async () => {
-  const result = await fetch('http://localhost:7000/api/todos/getTodos', {
-    method: 'GET',
-    headers,
-  });
+const getList = async (currentPage: number, itemsPerPage: number) => {
+  const result = await fetch(
+    `http://localhost:7000/api/todos/getTodos?page=${currentPage}&limitItems=${itemsPerPage}`,
+    {
+      method: 'GET',
+      headers,
+    },
+  );
 
   return result.json();
 };

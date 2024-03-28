@@ -15,41 +15,46 @@ const todosReducer = (state: TodosState, action: TodoAction) => {
         ...state,
         isLoading: false,
         isError: false,
-        todos: action.payload,
+        todos: action.payload.items,
+        count: action.payload.count,
       };
     case TodoActionKind.FETCH_ADD_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        todos: [action.payload, ...state.todos],
+        todos: [action.payload.item, ...state.todos],
+        count: action.payload.count,
       };
     case TodoActionKind.FETCH_DELETE_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+        todos: state.todos.filter((todo) => todo.id !== action.payload.item.id),
+        count: action.payload.count,
       };
     case TodoActionKind.FETCH_COMPLETE_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        todos: state.todos.map((todo) => (todo.id === action.payload.id ? ({
+        todos: state.todos.map((todo) => (todo.id === action.payload.item.id ? ({
           ...todo,
-          isComplete: action.payload.isComplete,
+          isComplete: action.payload.item.isComplete,
         }) : todo)),
+        count: action.payload.count,
       };
     case TodoActionKind.FETCH_EDIT_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        todos: state.todos.map((todo) => ((todo.id === action.payload.id) ? ({
+        todos: state.todos.map((todo) => ((todo.id === action.payload.item.id) ? ({
           ...todo,
-          description: action.payload.description,
+          description: action.payload.item.description,
         }) : todo)),
+        count: action.payload.count,
       };
     case TodoActionKind.FETCH_FAILURE:
       return {
@@ -67,15 +72,19 @@ export const useTodoWorkspace = () => {
     isLoading: false,
     isError: false,
     todos: [],
+    count: 0,
   });
 
-  const getTodos = async () => {
+  const getTodos = async (currentPage: number, itemsPerPage: number) => {
     dispatch({ type: TodoActionKind.FETCH_INIT });
 
     try {
-      const data = await todoService.getList();
+      const data = await todoService.getList(currentPage, itemsPerPage);
 
-      dispatch({ type: TodoActionKind.FETCH_SUCCESS, payload: data.items });
+      dispatch({
+        type: TodoActionKind.FETCH_SUCCESS,
+        payload: { items: data.items, count: data.count },
+      });
     } catch (e) {
       dispatch({ type: TodoActionKind.FETCH_FAILURE });
     }
@@ -87,7 +96,10 @@ export const useTodoWorkspace = () => {
     try {
       const data = await todoService.add(description);
 
-      dispatch({ type: TodoActionKind.FETCH_ADD_SUCCESS, payload: data.item });
+      dispatch({
+        type: TodoActionKind.FETCH_ADD_SUCCESS,
+        payload: { item: data.item, count: data.count },
+      });
     } catch (e) {
       dispatch({ type: TodoActionKind.FETCH_FAILURE });
     }
@@ -99,7 +111,10 @@ export const useTodoWorkspace = () => {
     try {
       const data = await todoService.remove(id);
 
-      dispatch({ type: TodoActionKind.FETCH_DELETE_SUCCESS, payload: data.item });
+      dispatch({
+        type: TodoActionKind.FETCH_DELETE_SUCCESS,
+        payload: { item: data.item, count: data.count },
+      });
     } catch (e) {
       dispatch({ type: TodoActionKind.FETCH_FAILURE });
     }
@@ -111,7 +126,10 @@ export const useTodoWorkspace = () => {
     try {
       const data = await todoService.complete(id, isComplete);
 
-      dispatch({ type: TodoActionKind.FETCH_COMPLETE_SUCCESS, payload: data.item });
+      dispatch({
+        type: TodoActionKind.FETCH_COMPLETE_SUCCESS,
+        payload: { item: data.item, count: data.count },
+      });
     } catch (e) {
       dispatch({ type: TodoActionKind.FETCH_FAILURE });
     }
@@ -123,7 +141,10 @@ export const useTodoWorkspace = () => {
     try {
       const data = await todoService.edit(id, description);
 
-      dispatch({ type: TodoActionKind.FETCH_EDIT_SUCCESS, payload: data.item });
+      dispatch({
+        type: TodoActionKind.FETCH_EDIT_SUCCESS,
+        payload: { item: data.item, count: data.count },
+      });
     } catch (e) {
       dispatch({ type: TodoActionKind.FETCH_FAILURE });
     }
