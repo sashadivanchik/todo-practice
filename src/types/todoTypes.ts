@@ -8,6 +8,7 @@ export type TodosState = {
   isLoading: boolean,
   isError: boolean,
   todos: Todo[]
+  count: number;
 };
 
 export enum TodoActionKind {
@@ -22,9 +23,9 @@ export enum TodoActionKind {
 
 export type TodoAction =
   | { type: TodoActionKind.FETCH_INIT }
-  | { type: TodoActionKind.FETCH_SUCCESS, payload: Todo[] }
-  | { type: TodoActionKind.FETCH_ADD_SUCCESS, payload: Todo }
-  | { type: TodoActionKind.FETCH_DELETE_SUCCESS, payload: Todo }
-  | { type: TodoActionKind.FETCH_COMPLETE_SUCCESS, payload: Todo }
-  | { type: TodoActionKind.FETCH_EDIT_SUCCESS, payload: Todo }
+  | { type: TodoActionKind.FETCH_SUCCESS, payload: { items: Todo[], count: number} }
+  | { type: TodoActionKind.FETCH_ADD_SUCCESS, payload: { item: Todo, count: number} }
+  | { type: TodoActionKind.FETCH_DELETE_SUCCESS, payload: { item: Todo, count: number} }
+  | { type: TodoActionKind.FETCH_COMPLETE_SUCCESS, payload: { item: Todo, count: number} }
+  | { type: TodoActionKind.FETCH_EDIT_SUCCESS, payload: { item: Todo, count: number} }
   | { type: TodoActionKind.FETCH_FAILURE };

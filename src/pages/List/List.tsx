@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ListItem } from '../../components/ListItem/ListItem';
 import { Form } from '../../components/Form/Form';
 import { Container } from '../../components/Container/Container';
 import { Loading } from '../../components/Loading/Loading';
 import { useTodoWorkspace } from './useTodoWorkspace';
+import { Pagination } from '../../components/Pagination/Pagination';
+
+const MAX_ITEMS_ON_PAGE = 10;
 
 export const List: React.FC = () => {
   const {
@@ -15,12 +18,18 @@ export const List: React.FC = () => {
     editDescriptionTodo,
   } = useTodoWorkspace();
 
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    getTodos();
-  }, []);
+    getTodos(page, MAX_ITEMS_ON_PAGE);
+  }, [page]);
 
   const handleRemove = (id: number) => {
     deleteTodo(id);
+
+    if (page > 1 && state.todos.length % MAX_ITEMS_ON_PAGE === 1) {
+      setPage(page - 1);
+    }
   };
 
   const handleToggle = (id: number, isComplete: boolean) => {
@@ -45,6 +54,15 @@ export const List: React.FC = () => {
         />
         { state.isError && <div>Ошибка получения данных</div>}
 
+        { state.count > MAX_ITEMS_ON_PAGE ? (
+          <Pagination
+            total={state.count}
+            itemsPerPage={MAX_ITEMS_ON_PAGE}
+            currentPage={page}
+            onPageChange={setPage}
+          />
+        ) : null }
+
         { state.isLoading ? <Loading /> : state.todos && state.todos.map((todo) => (
           <ListItem
             key={todo.id}
@@ -56,6 +74,15 @@ export const List: React.FC = () => {
             onEdit={handleEditTodo}
           />
         )) }
+
+        { state.count > MAX_ITEMS_ON_PAGE ? (
+          <Pagination
+            total={state.count}
+            itemsPerPage={MAX_ITEMS_ON_PAGE}
+            currentPage={page}
+            onPageChange={setPage}
+          />
+        ) : null }
       </>
     </Container>
   );
