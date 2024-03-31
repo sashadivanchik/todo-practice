@@ -11,6 +11,11 @@ export type TodosState = {
   count: number;
 };
 
+type TodoItem = {
+  item: Todo;
+  count: number;
+};
+
 export enum TodoActionKind {
   FETCH_INIT = 'FETCH_INIT',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
@@ -24,8 +29,8 @@ export enum TodoActionKind {
 export type TodoAction =
   | { type: TodoActionKind.FETCH_INIT }
   | { type: TodoActionKind.FETCH_SUCCESS, payload: { items: Todo[], count: number} }
-  | { type: TodoActionKind.FETCH_ADD_SUCCESS, payload: { item: Todo, count: number} }
-  | { type: TodoActionKind.FETCH_DELETE_SUCCESS, payload: { item: Todo, count: number} }
-  | { type: TodoActionKind.FETCH_COMPLETE_SUCCESS, payload: { item: Todo, count: number} }
-  | { type: TodoActionKind.FETCH_EDIT_SUCCESS, payload: { item: Todo, count: number} }
+  | { type: TodoActionKind.FETCH_ADD_SUCCESS, payload: TodoItem }
+  | { type: TodoActionKind.FETCH_DELETE_SUCCESS, payload: TodoItem }
+  | { type: TodoActionKind.FETCH_COMPLETE_SUCCESS, payload: TodoItem }
+  | { type: TodoActionKind.FETCH_EDIT_SUCCESS, payload: TodoItem }
   | { type: TodoActionKind.FETCH_FAILURE };
